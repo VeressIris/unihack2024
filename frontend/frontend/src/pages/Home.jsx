@@ -9,17 +9,20 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleStartProblemeClick = () => {
-    navigate("/select");
+    navigate("/select"); // Navigate to the Select page
   };
 
   return (
     <div className="relative min-h-screen bg-[#B5D4F4]">
+      {/* Home-waves background covering full height */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url('/src/assets/images/home-images/home-wave.svg')`,
         }}
       ></div>
+
+      {/* Gradient background with a height stopping 20% above the footer */}
       <div
         className="absolute top-0 left-0 w-full bg-cover bg-center"
         style={{
@@ -28,22 +31,28 @@ const Home = () => {
         }}
       ></div>
 
+      {/* Main content */}
       <div className="relative z-10">
         <Nav />
         <div className="flex md:flex-row-reverse md:mr-[5%] flex-col">
           <div className="girl-imagetop-20 -mt-5">
             <img src={girl} alt="Girl" className="h-[450px] w-auto" />
             <div className="absolute top-24 left-1/2 transform translate-x-custom -translate-y-10">
-              <img src={bee} alt="Bee" className="h-[200px] w-auto" />
+              <img src={bee} alt="Bee" className="h-[200px] w-auto float-animation" />
             </div>
           </div>
 
           <div className="flex flex-col mt-5 md:ml-0 md:mr-0 ml-[10%] mr-[10%]">
             <div className="main-text mt-12 md:text-4xl text-2xl font-bold text-white">
               <p>
+<<<<<<< HEAD
                 Să fii olimpic e ușor,
                 <br />
                 când știi unde să cauți ajutor!
+=======
+                Să fii olimpic e ușor,<br />
+                <span className="typewriter">când știi unde să cauți ajutor!</span>
+>>>>>>> 63e74ba559e7ffd55fa9bf7aeb9fe5473b6ef5c1
               </p>
             </div>
 
@@ -63,7 +72,7 @@ const Home = () => {
                 <span className="font-semibold">depășește-le!</span>
               </p>
             </div>
-
+            
             <div className="mt-[10%] ml-[42%]">
               <Button
                 text="START PROBLEME"
@@ -75,6 +84,6 @@ const Home = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Home;
