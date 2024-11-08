@@ -78,3 +78,27 @@
 .circle-button:hover {
   background-color: hsl(54, 81%, 40%);
 }
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-animation {
+  animation: rotate 17s linear infinite;
+}
+
+@keyframes twitch {
+  0% { transform: rotate(45deg); }
+  40% { transform: rotate(55deg); }
+  100% { transform: rotate(45deg); }
+}
+
+.twitch-animation {
+  animation: twitch 4s infinite ease-in-out alternate;
+  transform-origin: center;
+}

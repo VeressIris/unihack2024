@@ -6,6 +6,16 @@ import wavefro from "../assets/images/loading-images/loading-wave-2.svg";
 import wavebeh from "../assets/images/loading-images/loading-wave-1.svg";
 
 const Loading = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate("/subject");
+    }, 10000); 
+    
+    return () => clearTimeout(timer);
+  }, [navigate]);
+
   return (
     <div className="select-page min-h-screen flex flex-col items-center bg-gradient-to-br from-[#419BD0] to-[#4556C5] relative">
       <Nav />
@@ -27,7 +37,7 @@ const Loading = () => {
         </p>
       </div>
       
-      <div className="flex items-center justify-center -mt-12">
+      <div className="flex items-center justify-center -mt-12 rotate-animation">
         <img src={bee} alt="Bee" className="h-[350px] w-auto" />
       </div>
     </div>

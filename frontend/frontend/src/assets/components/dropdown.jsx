@@ -14,7 +14,7 @@ const Dropdown = ({ options, label, onSelect }) => {
     <div className="relative inline-block text-left">
       <button
         type="button"
-        className="inline-flex justify-center items-center w-full rounded-md border border-dblbnsw shadow-sm px-4 py-2 bg-lbnsw text-sm font-medium text-gray-700 hover:bg-gray-50 text-center" // Add text-center here
+        className="inline-flex justify-center items-center w-full rounded-md border border-dblbnsw shadow-sm px-4 py-2 bg-lbnsw text-sm font-medium text-gray-700 hover:bg-gray-50 text-center"
         onClick={() => setIsOpen(!isOpen)}
       >
         {selectedOption}
@@ -22,13 +22,16 @@ const Dropdown = ({ options, label, onSelect }) => {
       </button>
 
       {isOpen && (
-        <div className="absolute z-10 mt-2 w-full rounded-md bg-lbnsw shadow-lg">
+        <div 
+          className="absolute z-10 mt-2 w-full rounded-md bg-lbnsw shadow-lg transition-transform duration-300 ease-out hover:scale-105" 
+          // Added transition and hover scale effect to enlarge the dropdown on hover
+        >
           <ul className="py-1">
             {options.map((option, index) => (
               <li
                 key={index}
                 onClick={() => handleOptionClick(option)}
-                className="cursor-pointer px-4 py-2 text-gray-700 hover:bg-gray-100 text-center" // Center text in options
+                className="cursor-pointer px-4 py-2 text-gray-700 hover:bg-gray-100 text-center"
               >
                 {option}
               </li>
