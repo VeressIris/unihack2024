@@ -24,11 +24,11 @@ const Select = () => {
       let nextInterval;
 
       if (images[index] === bee && images[(index + 1) % images.length] === beehcy) {
-        nextInterval = 4000; // 20 seconds between bee and beehcy
+        nextInterval = 3000; // 20 seconds between bee and beehcy
       } else if (images[index] === beehcy && images[(index + 1) % images.length] === beecy) {
         nextInterval = 50; // 0.5 seconds between beehcy and beecy
       } else if (images[index] === beecy && images[(index + 1) % images.length] === bee) {
-        nextInterval = 50; // 0.5 seconds between beecy and bee
+        nextInterval = 40; // 0.5 seconds between beecy and bee
       }
 
       clearInterval(interval); // Clear the previous interval

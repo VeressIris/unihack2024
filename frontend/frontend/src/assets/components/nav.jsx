@@ -8,12 +8,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Nav = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   console.log(isAuthenticated, user);
+
   return (
     <div className="w-[90%] mx-auto flex items-center justify-between p-0 lg:flex-row text-[#E8F2F4] text-sm">
       <div className="mt-[12px]">
         <img src={logo} alt="Logo" className="h-28 w-auto" />
       </div>
-      <div className="text-sm flex mr-6 space-x-6 mt-[-20px] font-medium">
+      <div className="text-sm flex space-x-6 font-medium ml-auto mr-4 mt-[-20px]">
         <Link to="/" className="hover-underline">
           ACASĂ
         </Link>
@@ -27,8 +28,10 @@ const Nav = () => {
           PROFIL
         </Link>
       </div>
-      <LoginButton />
-      <LogoutButton />
+      <div className="flex space-x-2 -mt-5 ml-1">
+        <LoginButton />
+        <LogoutButton />
+      </div>
     </div>
   );
 };
