@@ -1,6 +1,11 @@
 // src/App.js
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Problems from "./pages/Problems";
 import Login from "./pages/Login";
@@ -12,11 +17,10 @@ import Loading from "./pages/Loading";
 import Subject from "./pages/Subject";
 
 function App() {
-
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home /> }/>
+        <Route path="/" element={<Home />} />
         <Route path="/problems" element={<Problems />} />
         <Route path="/professors" element={<Professors />} />
         <Route path="/profile" element={<Profile />} />
