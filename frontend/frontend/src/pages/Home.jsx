@@ -24,41 +24,41 @@ const Home = () => {
         className="absolute top-0 left-0 w-full bg-cover bg-center"
         style={{
           backgroundImage: `url('/src/assets/images/home-images/home-gradient.svg')`,
-          height: '92%',
+          height: '80vh',
         }}
       ></div>
 
       <div className="relative z-10">
         <Nav />
-        <div className="flex md:flex-row-reverse md:mr-[5%] flex-col">
-          <div className="girl-imagetop-20 -mt-5">
-            <img src={girl} alt="Girl" className="h-[450px] w-auto" />
-            <div className="absolute top-24 left-1/2 transform translate-x-custom -translate-y-10">
-              <img src={bee} alt="Bee" className="h-[200px] w-auto" />
+        <div className="flex flex-col-reverse lg:flex-row lg:justify-between lg:px-[10%] lg:py-[5%]">
+          <div className="relative lg:w-1/2 lg:mt-0 mt-5">
+            <img src={girl} alt="Girl" className="w-[60%] mx-auto lg:w-[80%]" />
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:-translate-y-3/4">
+              <img src={bee} alt="Bee" className="h-[15vw] w-auto float-animation" />
             </div>
           </div>
 
-          <div className="flex flex-col mt-5 md:ml-0 md:mr-0 ml-[10%] mr-[10%]">
-            <div className="main-text mt-12 md:text-4xl text-2xl font-bold text-white">
+          <div className="flex flex-col items-center lg:items-start lg:w-1/2 lg:ml-0 px-[5%] lg:px-0">
+            <div className="main-text mt-5 text-center lg:text-left text-3xl md:text-4xl lg:text-5xl font-bold text-white">
               <p>
                 Să fii olimpic e ușor,<br />când știi unde să cauți ajutor!
               </p>
             </div>
 
-            <div className="mt-8 md:text-base text-sm font-normal text-[#E8F2F4]">
+            <div className="mt-8 text-center lg:text-left text-lg md:text-xl lg:text-2xl font-normal text-[#E8F2F4]">
               <p>
                 OlympiAId este platforma care te ajută să-ți duci pregătirea la următorul nivel,<br />
                 oferindu-ți subiecte de olimpiadă personalizate și adaptate nevoilor tale.
               </p>
             </div>
 
-            <div className="mt-8 md:text-base text-sm font-normal text-[#E8F2F4]">
+            <div className="mt-8 text-center lg:text-left text-lg md:text-xl lg:text-2xl font-normal text-[#E8F2F4]">
               <p>
                 Acceptă provocarea, descoperă-ți limitele și <span className="font-semibold">depășește-le!</span>
               </p>
             </div>
 
-            <div className="mt-[10%] ml-[42%]">
+            <div className="mt-10 lg:mt-[5%]">
               <Button text="START PROBLEME" onClick={handleStartProblemeClick} />
             </div>
           </div>
