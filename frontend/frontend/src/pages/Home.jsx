@@ -1,9 +1,9 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Nav from '../assets/components/nav';
-import girl from '../assets/images/home-images/home-girl.svg';
-import bee from '../assets/images/home-images/home-bee.png';
-import Button from '../assets/components/btn';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import Nav from "../assets/components/nav";
+import girl from "../assets/images/home-images/home-girl.svg";
+import bee from "../assets/images/home-images/home-bee.png";
+import Button from "../assets/components/btn";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const Home = () => {
         className="absolute top-0 left-0 w-full bg-cover bg-center"
         style={{
           backgroundImage: `url('/src/assets/images/home-images/home-gradient.svg')`,
-          height: '92%',
+          height: "92%",
         }}
       ></div>
 
@@ -52,19 +52,26 @@ const Home = () => {
 
             <div className="mt-8 md:text-base text-sm font-normal text-[#E8F2F4]">
               <p>
-                OlympiAId este platforma care te ajută să-ți duci pregătirea la următorul nivel,<br />
-                oferindu-ți subiecte de olimpiadă personalizate și adaptate nevoilor tale.
+                OlympiAId este platforma care te ajută să-ți duci pregătirea la
+                următorul nivel,
+                <br />
+                oferindu-ți subiecte de olimpiadă personalizate și adaptate
+                nevoilor tale.
               </p>
             </div>
 
             <div className="mt-8 md:text-base text-sm font-normal text-[#E8F2F4]">
               <p>
-                Acceptă provocarea, descoperă-ți limitele și <span className="font-semibold">depășește-le!</span>
+                Acceptă provocarea, descoperă-ți limitele și{" "}
+                <span className="font-semibold">depășește-le!</span>
               </p>
             </div>
             
             <div className="mt-[10%] ml-[42%]">
-              <Button text="START PROBLEME" onClick={handleStartProblemeClick} />
+              <Button
+                text="START PROBLEME"
+                onClick={handleStartProblemeClick}
+              />
             </div>
           </div>
         </div>
