@@ -45,14 +45,8 @@ const Home = () => {
           <div className="flex flex-col mt-5 md:ml-0 md:mr-0 ml-[10%] mr-[10%]">
             <div className="main-text mt-12 md:text-4xl text-2xl font-bold text-white">
               <p>
-<<<<<<< HEAD
-                Să fii olimpic e ușor,
-                <br />
-                când știi unde să cauți ajutor!
-=======
                 Să fii olimpic e ușor,<br />
                 <span className="typewriter">când știi unde să cauți ajutor!</span>
->>>>>>> 63e74ba559e7ffd55fa9bf7aeb9fe5473b6ef5c1
               </p>
             </div>
 
