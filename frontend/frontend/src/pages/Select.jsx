@@ -8,6 +8,12 @@ import wavebeh from '../assets/images/select-images/wave-select-2.svg';
 import wavefro from '../assets/images/select-images/wave-select-1.svg';
 import laptop from '../assets/images/select-images/laptop-bee/laptop.png';
 import Button from '../assets/components/btn';
+import Dropdown from '../assets/components/dropdown';
+
+
+const domain_opt = ['Biologie', 'Istorie', 'Engleză'];
+const class_opt = ['IX', 'X', 'XI','XII'];
+const phase_opt = ['Locală', 'Județeană', 'Națională'];
 
 const Select = () => {
   const [currentBeeImage, setCurrentBeeImage] = useState(bee);
@@ -22,22 +28,21 @@ const Select = () => {
       setCurrentBeeImage(images[index]);
 
       let nextInterval;
-
       if (images[index] === bee && images[(index + 1) % images.length] === beehcy) {
-        nextInterval = 3000; // 20 seconds between bee and beehcy
+        nextInterval = 3000;
       } else if (images[index] === beehcy && images[(index + 1) % images.length] === beecy) {
-        nextInterval = 50; // 0.5 seconds between beehcy and beecy
+        nextInterval = 50;
       } else if (images[index] === beecy && images[(index + 1) % images.length] === bee) {
-        nextInterval = 40; // 0.5 seconds between beecy and bee
+        nextInterval = 40;
       }
 
-      clearInterval(interval); // Clear the previous interval
-      interval = setInterval(startTransition, nextInterval); // Set a new interval with the updated duration
+      clearInterval(interval);
+      interval = setInterval(startTransition, nextInterval);
     };
 
-    interval = setInterval(startTransition,10); // Start with 20s interval for the first transition
+    interval = setInterval(startTransition, 3000);
 
-    return () => clearInterval(interval); // Cleanup on component unmount
+    return () => clearInterval(interval);
   }, []);
 
   const handleSelect = (option) => {
@@ -79,10 +84,15 @@ const Select = () => {
       </div>
 
       <div className="flex flex-col items-center mt-20 z-20">
-        <h2 className="text-white text-2xl font-medium mb-8">Selectează datele problemelor tale</h2>
+        <h2 className="text-white text-2xl font-medium mb-0">Selectează datele problemelor tale</h2>
+      </div>
+      <div className="flex flex-row items-center space-x-4 mt-12">
+        <Dropdown options={domain_opt} label="Selectează domeniul" onSelect={handleSelect} />
+        <Dropdown options={class_opt} label="Selectează clasa" onSelect={handleSelect} />
+        <Dropdown options={phase_opt} label="Selectează etapa" onSelect={handleSelect} />
       </div>
 
-      <div className="mt-8 flex items-center z-20">
+      <div className="mt-8 flex flex-row items-center">
         <Link to="/loading">
           <Button text="START PROBLEME" onClick={onStartProblemeClick} />
         </Link>
