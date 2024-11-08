@@ -14,3 +14,63 @@
 .hover-underline:hover::after {
   transform: scaleX(1); 
 }
+
+.translate-x-custom {
+  transform: translateX(90%);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-40px); 
+  }
+}
+
+.float-animation {
+  animation: float 8s ease-in-out infinite; 
+}
+
+
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03); 
+  }
+}
+
+.pulse-animation {
+  animation: pulse 8s ease-in-out infinite; 
+}
+
+@keyframes typewriter {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 0.15em solid white;
+  white-space: nowrap;
+  animation: typewriter 6s steps(40, end) infinite, blink 0.75s step-end infinite;
+  width: 0;
+}
+
