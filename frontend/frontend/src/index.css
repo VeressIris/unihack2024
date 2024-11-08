@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hover-underline::after {
+  content: '';
+  display: block;
+  border-bottom: solid 2px hsl(54,81%,60%); 
+  transform: scaleX(0);  
+  transition: transform 200ms ease-in-out;
+  transform-origin: center;
+}
+
+.hover-underline:hover::after {
+  transform: scaleX(1); 
+}
