@@ -1,15 +1,15 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Nav from '../assets/components/nav';
-import girl from '../assets/images/home-images/home-girl.svg';
-import bee from '../assets/images/home-images/home-bee.png';
-import Button from '../assets/components/btn';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import Nav from "../assets/components/nav";
+import girl from "../assets/images/home-images/home-girl.svg";
+import bee from "../assets/images/home-images/home-bee.png";
+import Button from "../assets/components/btn";
 
 const Home = () => {
   const navigate = useNavigate();
 
   const handleStartProblemeClick = () => {
-    navigate("/select"); 
+    navigate("/select");
   };
 
   return (
@@ -24,7 +24,7 @@ const Home = () => {
         className="absolute top-0 left-0 w-full bg-cover bg-center"
         style={{
           backgroundImage: `url('/src/assets/images/home-images/home-gradient.svg')`,
-          height: '92%',
+          height: "92%",
         }}
       ></div>
 
@@ -41,25 +41,34 @@ const Home = () => {
           <div className="flex flex-col mt-5 md:ml-0 md:mr-0 ml-[10%] mr-[10%]">
             <div className="main-text mt-12 md:text-4xl text-2xl font-bold text-white">
               <p>
-                Să fii olimpic e ușor,<br />când știi unde să cauți ajutor!
+                Să fii olimpic e ușor,
+                <br />
+                când știi unde să cauți ajutor!
               </p>
             </div>
 
             <div className="mt-8 md:text-base text-sm font-normal text-[#E8F2F4]">
               <p>
-                OlympiAId este platforma care te ajută să-ți duci pregătirea la următorul nivel,<br />
-                oferindu-ți subiecte de olimpiadă personalizate și adaptate nevoilor tale.
+                OlympiAId este platforma care te ajută să-ți duci pregătirea la
+                următorul nivel,
+                <br />
+                oferindu-ți subiecte de olimpiadă personalizate și adaptate
+                nevoilor tale.
               </p>
             </div>
 
             <div className="mt-8 md:text-base text-sm font-normal text-[#E8F2F4]">
               <p>
-                Acceptă provocarea, descoperă-ți limitele și <span className="font-semibold">depășește-le!</span>
+                Acceptă provocarea, descoperă-ți limitele și{" "}
+                <span className="font-semibold">depășește-le!</span>
               </p>
             </div>
 
             <div className="mt-[10%] ml-[42%]">
-              <Button text="START PROBLEME" onClick={handleStartProblemeClick} />
+              <Button
+                text="START PROBLEME"
+                onClick={handleStartProblemeClick}
+              />
             </div>
           </div>
         </div>
