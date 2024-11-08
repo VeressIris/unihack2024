@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "unihack2024",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-native-linear-gradient": "^2.8.3",
     "react-router-dom": "^6.28.0"
   },
   "devDependencies": {

@@ -12,21 +12,11 @@ import Loading from "./pages/Loading";
 import Subject from "./pages/Subject";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [canAccessSelect, setCanAccessSelect] = useState(false);
 
   return (
     <Router>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              isAuthenticated={isAuthenticated}
-              grantAccessToSelect={() => setCanAccessSelect(true)}
-            />
-          }
-        />
+        <Route path="/" element={<Home /> }/>
         <Route path="/problems" element={<Problems />} />
         <Route path="/professors" element={<Professors />} />
         <Route path="/profile" element={<Profile />} />
