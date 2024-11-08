@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Nav from '../assets/components/nav';
 import bee from '../assets/images/select-images/laptop-bee/bee.png';
 import beecy from '../assets/images/select-images/laptop-bee/bee-cy.png';
@@ -10,13 +10,16 @@ import laptop from '../assets/images/select-images/laptop-bee/laptop.png';
 import Button from '../assets/components/btn';
 import Dropdown from '../assets/components/dropdown';
 
-
 const domain_opt = ['Biologie', 'Istorie', 'Engleză'];
-const class_opt = ['IX', 'X', 'XI','XII'];
+const class_opt = ['IX', 'X', 'XI', 'XII'];
 const phase_opt = ['Locală', 'Județeană', 'Națională'];
 
 const Select = () => {
   const [currentBeeImage, setCurrentBeeImage] = useState(bee);
+  const [selectedDomain, setSelectedDomain] = useState(null);
+  const [selectedClass, setSelectedClass] = useState(null);
+  const [selectedPhase, setSelectedPhase] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const images = [bee, beehcy, beecy];
@@ -45,12 +48,18 @@ const Select = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleSelect = (option) => {
-    console.log('Selected:', option);
-  };
+  const handleSelectDomain = (option) => setSelectedDomain(option);
+  const handleSelectClass = (option) => setSelectedClass(option);
+  const handleSelectPhase = (option) => setSelectedPhase(option);
 
-  const onStartProblemeClick = () => {
-    console.log("Starting problems...");
+  const allOptionsSelected = selectedDomain && selectedClass && selectedPhase;
+
+  const handleStartProblemeClick = () => {
+    if (allOptionsSelected) {
+      navigate('/loading');
+    } else {
+      alert('Selectează toate datele problemelor, înainte de a continua!');
+    }
   };
 
   return (
@@ -65,37 +74,25 @@ const Select = () => {
         <img src={wavefro} alt="Wave-front Background" className="w-full h-auto" />
       </div>
 
-      {/* Bee Image */}
       <div className="absolute bottom-10 left-10 z-20">
-        <img
-          src={currentBeeImage}
-          alt="Bee"
-          className="h-[200px] w-auto transition-opacity duration-1000"
-        />
+        <img src={currentBeeImage} alt="Bee" className="h-[200px] w-auto transition-opacity duration-1000" />
       </div>
 
-      {/* Laptop Image Positioned in Front of the Bee */}
       <div className="absolute -bottom-10 -left-10 z-30">
-        <img
-          src={laptop}
-          alt="Laptop"
-          className="h-[250px] w-auto"
-        />
+        <img src={laptop} alt="Laptop" className="h-[250px] w-auto" />
       </div>
 
       <div className="flex flex-col items-center mt-20 z-20">
-        <h2 className="text-white text-2xl font-medium mb-0">Selectează datele problemelor tale</h2>
+        <h2 className="text-nsw text-2xl font-medium mb-0">Selectează datele problemelor tale</h2>
       </div>
       <div className="flex flex-row items-center space-x-4 mt-12">
-        <Dropdown options={domain_opt} label="Selectează domeniul" onSelect={handleSelect} />
-        <Dropdown options={class_opt} label="Selectează clasa" onSelect={handleSelect} />
-        <Dropdown options={phase_opt} label="Selectează etapa" onSelect={handleSelect} />
+        <Dropdown options={domain_opt} label="Selectează domeniul" onSelect={handleSelectDomain} />
+        <Dropdown options={class_opt} label="Selectează clasa" onSelect={handleSelectClass} />
+        <Dropdown options={phase_opt} label="Selectează etapa" onSelect={handleSelectPhase} />
       </div>
 
       <div className="mt-8 flex flex-row items-center">
-        <Link to="/loading">
-          <Button text="START PROBLEME" onClick={onStartProblemeClick} />
-        </Link>
+        <Button text="START PROBLEME" onClick={handleStartProblemeClick} />
       </div>
     </div>
   );
