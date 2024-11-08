@@ -9,12 +9,11 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleStartProblemeClick = () => {
-    navigate("/select"); // Navigate to the Select page
+    navigate("/select");
   };
 
   return (
     <div className="relative min-h-screen bg-[#B5D4F4]">
-      {/* Home-waves background covering full height */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
@@ -22,7 +21,6 @@ const Home = () => {
         }}
       ></div>
 
-      {/* Gradient background with a height stopping 20% above the footer */}
       <div
         className="absolute top-0 left-0 w-full bg-cover bg-center"
         style={{
@@ -31,7 +29,6 @@ const Home = () => {
         }}
       ></div>
 
-      {/* Main content */}
       <div className="relative z-10">
         <Nav />
         <div className="flex md:flex-row-reverse md:mr-[5%] flex-col">

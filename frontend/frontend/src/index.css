@@ -102,3 +102,30 @@
   animation: twitch 4s infinite ease-in-out alternate;
   transform-origin: center;
 }
+
+#motion-demo {
+  offset-path: path("M20,20 C20,100 200,0 200,100");
+  animation: move 3000ms infinite alternate ease-in-out;
+}
+
+@keyframes move {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes float-dramatically {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-100px); 
+  }
+}
+
+.float-dramatically-animation {
+  animation: float-dramatically 10s ease-in-out infinite; 
+}

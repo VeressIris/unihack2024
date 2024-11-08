@@ -10,6 +10,8 @@ import Professors from "./pages/Professors";
 import Profile from "./pages/Profile";
 import Loading from "./pages/Loading";
 import Subject from "./pages/Subject";
+import View from "./pages/View";
+
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
         <Route path="/subject" element={<Subject />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/view" element={<View />} />
       </Routes>
     </Router>
   );
