@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Problems from "./pages/Problems";
-import Login from "./pages/Login";
+import PersonalProblems from "./pages/PersonalProblems";
 import Signup from "./pages/Signup";
 import Select from "./pages/Select";
 import Professors from "./pages/Professors";
@@ -23,7 +23,7 @@ function App() {
         <Route path="/select" element={<Select />} />
         <Route path="/loading" element={<Loading />} />
         <Route path="/subject" element={<Subject />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/personal" element={<PersonalProblems />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/view" element={<View />} />
       </Routes>
