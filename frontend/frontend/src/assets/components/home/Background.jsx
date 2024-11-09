@@ -7,14 +7,14 @@ const Background = () => {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('/src/assets/images/home-images/home-wave.svg')`,
+          backgroundImage: `url('/home-wave.svg')`,
         }}
       ></div>
 
       <div
         className="absolute top-0 left-0 w-full bg-cover bg-center"
         style={{
-          backgroundImage: `url('/src/assets/images/home-images/home-gradient.svg')`,
+          backgroundImage: `url('/home-gradient.svg')`,
           height: "92%",
         }}
       ></div>
