@@ -120,16 +120,18 @@
 
 @keyframes float-dramatically {
   0%, 100% {
-    transform: translateY(0);
+    transform: translateY(0); /* Start just below the navbar */
   }
   50% {
-    transform: translateY(-100px); 
+    transform: translateY(calc(100vh - 100% - 25px)); /* Move towards bottom, subtract the height of the bee image and an additional 25px */
   }
 }
 
 .float-dramatically-animation {
-  animation: float-dramatically 10s ease-in-out infinite; 
+  animation: float-dramatically 10s ease-in-out infinite;
 }
+
+
 
 
 

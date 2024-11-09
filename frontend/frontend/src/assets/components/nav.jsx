@@ -20,9 +20,6 @@ const Nav = () => {
         <Link to="/problems" className="hover-underline">
           PROBLEME
         </Link>
-        <Link to="/professors" className="hover-underline">
-          PROFESORI
-        </Link>
         <Link to="/profile" className="hover-underline">
           PROFIL
         </Link>

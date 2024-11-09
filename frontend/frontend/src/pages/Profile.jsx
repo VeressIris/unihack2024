@@ -71,6 +71,9 @@ const Profile = () => {
               <h1 className="text-center text-2xl font-bold mt-6 mb-6">
                 Profil
               </h1>
+              <p className="text-center">
+                Pentru a vedea informațiile, loghează-te.
+              </p>
             </div>
           )}
         </div>
