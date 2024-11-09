@@ -2,7 +2,7 @@ import React from "react";
 
 const EditButton = ({ isEditing, onSave, onEdit }) => {
   return (
-    <div className="mt-6 flex justify-center space-x-4">
+    <div className="-mt-2 flex justify-center space-x-4">
       {isEditing ? (
         <button
           onClick={onSave}

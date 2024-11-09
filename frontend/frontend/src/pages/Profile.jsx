@@ -38,7 +38,7 @@ const Profile = () => {
     <div className="profile-page min-h-screen flex flex-col items-center bg-gradient-to-br from-[#3ba4cb] to-[#2c3eb4] pb-4 relative">
       <Nav />
       <div className="flex justify-center">
-        <div className="bg-[#B5D4F4] min-h-[70vh] w-[40vw] p-8 rounded-lg shadow-md text-black mt-0 mb-8 relative">
+        <div className="bg-[#B5D4F4] min-h-[50vh] w-[40vw] p-8 rounded-lg shadow-md text-black mt-0 mb-8 relative">
           <ProfileHeader user={user} isAuthenticated={isAuthenticated} />
           {isAuthenticated ? (
             <div className="flex flex-col items-center">
@@ -50,6 +50,21 @@ const Profile = () => {
                 isEditing={isEditing}
                 handleChange={handleChange}
               />
+              <div className="flex justify-between w-full mt-3">
+                <button
+                  onClick={() => navigate("/personal")}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-semibold px-4 rounded h-10"
+                >
+                  Problemele tale
+                </button>
+                <button
+                  onClick={handleEdit}
+                  className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-4 rounded h-10 "
+                >
+                  Editează profilul
+                </button>
+              </div>
+              <UserProblems userProblems={userProblems} />
             </div>
           ) : (
             <div>
@@ -58,18 +73,6 @@ const Profile = () => {
               </h1>
             </div>
           )}
-          <button
-            onClick={() => navigate("/personal")}
-            className="bg-blue-400 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded mt-3"
-          >
-            Lista problemelor generate de tine
-          </button>
-          <UserProblems userProblems={userProblems} />
-          <EditButton
-            isEditing={isEditing}
-            onSave={handleSave}
-            onEdit={handleEdit}
-          />
         </div>
       </div>
     </div>

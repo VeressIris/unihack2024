@@ -12,7 +12,7 @@ const UserProblems = ({ userProblems }) => {
           ))}
         </ul>
       ) : (
-        <p className="text-center">Nu ai generat nicio problemă momentan.</p>
+        <p className="text-center"></p>
       )}
     </div>
   );
