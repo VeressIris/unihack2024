@@ -12,7 +12,6 @@ import Loading from "./pages/Loading";
 import Subject from "./pages/Subject";
 import View from "./pages/View";
 
-
 function App() {
   return (
     <Router>

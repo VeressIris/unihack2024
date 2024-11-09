@@ -6,8 +6,7 @@ import LogoutButton from "./logoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Nav = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log(isAuthenticated, user);
+  const { isAuthenticated } = useAuth0();
 
   return (
     <div className="w-[90%] mx-auto flex items-center justify-between p-0 lg:flex-row text-[#E8F2F4] text-sm">
@@ -29,8 +28,7 @@ const Nav = () => {
         </Link>
       </div>
       <div className="flex space-x-2 -mt-5 ml-1">
-        <LoginButton />
-        <LogoutButton />
+        {isAuthenticated ? <LogoutButton /> : <LoginButton />}
       </div>
     </div>
   );
