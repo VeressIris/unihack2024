@@ -1,8 +1,10 @@
 import React from 'react'
-
+import Nav from "../assets/components/nav"
 const Signup = () => {
   return (
-    <div>Signup</div>
+    <div>
+        <Nav/>
+    </div>
   )
 }
 
