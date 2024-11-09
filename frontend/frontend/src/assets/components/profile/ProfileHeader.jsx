@@ -1,6 +1,6 @@
 import React from "react";
-import profil from "../../../assets/images/profile-images/profile-image.svg";
-import wave from "../../../assets/images/profile-images/profile-wave.svg";
+import profil from "/images/profile-images/profile-image.svg";
+import wave from "/images/profile-images/profile-wave.svg";
 
 const ProfileHeader = ({ user, isAuthenticated }) => {
   return (

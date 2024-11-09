@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav from "../assets/components/nav";
-import bee from "../assets/images/select-images/laptop-bee/bee.png";
-import beecy from "../assets/images/select-images/laptop-bee/bee-cy.png";
-import beehcy from "../assets/images/select-images/laptop-bee/bee-hcy.png";
+import bee from "/images/select-images/laptop-bee/bee.png";
+import beecy from "/images/select-images/laptop-bee/bee-cy.png";
+import beehcy from "/images/select-images/laptop-bee/bee-hcy.png";
 import Button from "../assets/components/btn";
 import BackgroundWaves from "../assets/components/select/BackgroundWaves";
 import BeeAnimation from "../assets/components/select/BeeAnimation";

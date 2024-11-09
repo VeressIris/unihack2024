@@ -1,5 +1,5 @@
 import React from "react";
-import Bee from "../../../assets/images/personal-problems-images/personal-problems-bee.png";
+import Bee from "/images/personal-problems-images/personal-problems-bee.png";
 
 const BeeImage = () => {
   return (

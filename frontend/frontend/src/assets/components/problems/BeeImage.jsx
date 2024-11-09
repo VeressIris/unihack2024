@@ -1,5 +1,5 @@
 import React from "react";
-import Bee from "../../../assets/images/problems-images/problems-bee.svg";
+import Bee from "/images/problems-images/problems-bee.svg";
 
 const BeeImage = () => {
   return (

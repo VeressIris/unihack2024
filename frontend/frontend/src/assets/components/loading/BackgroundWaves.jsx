@@ -1,6 +1,6 @@
 import React from "react";
-import wavefro from "../../../assets/images/loading-images/loading-wave-2.svg";
-import wavebeh from "../../../assets/images/loading-images/loading-wave-1.svg";
+import wavefro from "/images/loading-images/loading-wave-2.svg";
+import wavebeh from "/images/loading-images/loading-wave-1.svg";
 
 const BackgroundWaves = () => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
-import girl from "../../../assets/images/home-images/home-girl.svg";
-import bee from "../../../assets/images/home-images/home-bee.png";
+import girl from "/images/home-images/home-girl.svg";
+import bee from "/images/home-images/home-bee.png";
 
 const HeroSection = () => {
   return (

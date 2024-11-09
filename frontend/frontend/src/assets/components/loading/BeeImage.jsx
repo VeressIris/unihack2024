@@ -1,5 +1,5 @@
 import React from "react";
-import bee from "../../images/loading-images/loading-bee.png";
+import bee from "/images/loading-images/loading-bee.png";
 
 const BeeImage = () => {
   return (

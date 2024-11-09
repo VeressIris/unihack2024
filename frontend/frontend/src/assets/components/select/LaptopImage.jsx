@@ -1,6 +1,6 @@
 
 import React from "react";
-import laptop from "../../../assets/images/select-images/laptop-bee/laptop.png";
+import laptop from "/images/select-images/laptop-bee/laptop.png";
 
 const LaptopImage = () => {
   return (
