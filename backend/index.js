@@ -59,6 +59,19 @@ app.post("/post-test", async (req, res) => {
   }
 });
 
+app.get("/get-user-tests", async (req, res) => {
+  user = req.query.user;
+  try {
+    const db = client.db("db");
+    const collection = db.collection("tests");
+    const data = await collection.find({ creator: user }).toArray();
+    res.json(data);
+  } catch (error) {
+    console.error("Error retrieving data:", error);
+    res.status(500).send("Error retrieving data");
+  }
+});
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
