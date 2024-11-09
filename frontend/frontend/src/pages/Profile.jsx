@@ -5,7 +5,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import ProfileHeader from "../assets/components/profile/ProfileHeader";
 import ProfileDetails from "../assets/components/profile/ProfileDetails";
 import UserProblems from "../assets/components/profile/UserProblems";
-import EditButton from "../assets/components/profile/EditButton";
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
@@ -22,6 +21,7 @@ const Profile = () => {
   });
 
   const handleSave = () => {
+   
     setIsEditing(false);
   };
 
@@ -57,12 +57,29 @@ const Profile = () => {
                 >
                   Problemele tale
                 </button>
-                <button
-                  onClick={handleEdit}
-                  className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-4 rounded h-10 "
-                >
-                  Editează profilul
-                </button>
+                {isEditing ? (
+                  <>
+                    <button
+                      onClick={handleSave}
+                      className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 rounded h-10"
+                    >
+                      Salvează
+                    </button>
+                    <button
+                      onClick={() => setIsEditing(false)}
+                      className="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 rounded h-10 ml-2"
+                    >
+                      Anulează
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    onClick={handleEdit}
+                    className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-4 rounded h-10"
+                  >
+                    Editează profilul
+                  </button>
+                )}
               </div>
               <UserProblems userProblems={userProblems} />
             </div>

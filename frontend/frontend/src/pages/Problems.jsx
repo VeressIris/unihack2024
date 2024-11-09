@@ -32,11 +32,13 @@ const Problems = () => {
   return (
     <div className="problems-page min-h-screen flex flex-col items-center bg-gradient-to-br from-[#3ba4cb] to-[#2c3eb4] relative overflow-hidden">
       <Nav />
+      <div className="absolute top-20 left-0">
+        <BeeImage />
+      </div>
       <div className="flex flex-grow flex-col items-center justify-center w-full max-w-3xl mx-auto mt-10 px-6 md:px-0 text-center text-blbnsw space-y-8">
         <ProblemListHeader />
         <ProblemList subjects={subjects} />
       </div>
-      <BeeImage />
       <div className="mt-10 mb-10" />
     </div>
   );
