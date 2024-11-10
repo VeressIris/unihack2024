@@ -10,8 +10,9 @@ import BeeAnimation from "../assets/components/select/BeeAnimation";
 import LaptopImage from "../assets/components/select/LaptopImage";
 import SelectionHeader from "../assets/components/select/SelectionHeader";
 import SelectionOptions from "../assets/components/select/SelectionOptions";
-
-const domainOptions = ["Biologie", "Istorie", "Engleză","Informatică"];
+import { useAuth0 } from "@auth0/auth0-react";
+import { romanToInt, toMongoDbReadable } from "../utils";
+const domainOptions = ["Biologie", "Istorie", "Engleză"];
 const classOptions = ["IX", "X", "XI", "XII"];
 const phaseOptions = ["Locală", "Județeană", "Națională"];
 
@@ -21,6 +22,7 @@ const Select = () => {
   const [selectedClass, setSelectedClass] = useState(null);
   const [selectedPhase, setSelectedPhase] = useState(null);
   const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
     const images = [bee, beehcy, beecy];
@@ -32,11 +34,20 @@ const Select = () => {
       setCurrentBeeImage(images[index]);
 
       let nextInterval;
-      if (images[index] === bee && images[(index + 1) % images.length] === beehcy) {
+      if (
+        images[index] === bee &&
+        images[(index + 1) % images.length] === beehcy
+      ) {
         nextInterval = 2500;
-      } else if (images[index] === beehcy && images[(index + 1) % images.length] === beecy) {
+      } else if (
+        images[index] === beehcy &&
+        images[(index + 1) % images.length] === beecy
+      ) {
         nextInterval = 60;
-      } else if (images[index] === beecy && images[(index + 1) % images.length] === bee) {
+      } else if (
+        images[index] === beecy &&
+        images[(index + 1) % images.length] === bee
+      ) {
         nextInterval = 90;
       }
 
@@ -51,9 +62,63 @@ const Select = () => {
 
   const allOptionsSelected = selectedDomain && selectedClass && selectedPhase;
 
-  const handleStartProblemeClick = () => {
+  const handleStartProblemeClick = async () => {
     if (allOptionsSelected) {
-      navigate("/loading");
+      // nu ar merge chiar asa daca chiar aveam un AI care genera subiectele
+      let content = "";
+      try {
+        const response = await fetch(
+          `https://unihack2024-13sm.onrender.com/get-hardcoded-test?${new URLSearchParams(
+            {
+              subject: toMongoDbReadable(selectedDomain),
+              grade: romanToInt(selectedClass),
+              stage: toMongoDbReadable(selectedPhase),
+            }
+          )}`
+        );
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        console.log(data);
+        content = data[Math.floor(Math.random() * data.length)].content;
+      } catch (error) {
+        console.error("Fetch error: ", error);
+      }
+
+      const data = {
+        creator: user.nickname,
+        subject: selectedDomain,
+        grade: selectedClass,
+        stage: selectedPhase,
+        content: content,
+        solutions: [],
+        dateCreated: new Date(),
+      };
+      try {
+        const response = await fetch(
+          "https://unihack2024-13sm.onrender.com/add-test",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const result = await response.json();
+        navigate("/loading"); // Call navigate after successful fetch
+        return result;
+      } catch (error) {
+        console.error("Error occurred during fetch:", error);
+      }
     } else {
       alert("Selectează toate datele problemelor, înainte de a continua!");
     }
