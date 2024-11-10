@@ -64,7 +64,7 @@ const Select = () => {
 
   const handleStartProblemeClick = async () => {
     if (allOptionsSelected) {
-      // nu ar merge chiar asa daca chiar aveam un AI care genera subiectele
+      
       let content = "";
       try {
         const response = await fetch(
@@ -114,7 +114,7 @@ const Select = () => {
         }
 
         const result = await response.json();
-        navigate("/loading"); // Call navigate after successful fetch
+        navigate("/loading"); 
         return result;
       } catch (error) {
         console.error("Error occurred during fetch:", error);
@@ -139,7 +139,7 @@ const Select = () => {
         onSelectClass={setSelectedClass}
         onSelectPhase={setSelectedPhase}
       />
-      <div className="mt-8 flex flex-row items-center">
+      <div className="mt-8 flex flex-row items-center -mt-2">
         <Button text="START PROBLEME" onClick={handleStartProblemeClick} />
       </div>
     </div>
