@@ -12,6 +12,7 @@ import SelectionHeader from "../assets/components/select/SelectionHeader";
 import SelectionOptions from "../assets/components/select/SelectionOptions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { romanToInt, toMongoDbReadable } from "../utils";
+
 const domainOptions = ["Biologie", "Istorie", "Engleză"];
 const classOptions = ["IX", "X", "XI", "XII"];
 const phaseOptions = ["Locală", "Județeană", "Națională"];
@@ -63,8 +64,12 @@ const Select = () => {
   const allOptionsSelected = selectedDomain && selectedClass && selectedPhase;
 
   const handleStartProblemeClick = async () => {
+    if (!isAuthenticated) {
+      alert("Trebuie să fii logat pentru a accesa această funcționalitate.");
+      return;
+    }
+
     if (allOptionsSelected) {
-      
       let content = "";
       try {
         const response = await fetch(
@@ -97,6 +102,7 @@ const Select = () => {
         solutions: [],
         dateCreated: new Date(),
       };
+
       try {
         const response = await fetch(
           "https://unihack2024-13sm.onrender.com/add-test",
@@ -114,7 +120,7 @@ const Select = () => {
         }
 
         const result = await response.json();
-        navigate("/loading"); 
+        navigate("/loading");
         return result;
       } catch (error) {
         console.error("Error occurred during fetch:", error);
