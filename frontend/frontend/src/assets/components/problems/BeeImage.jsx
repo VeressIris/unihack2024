@@ -1,11 +1,21 @@
 import React from "react";
-import beeImage from "/images/problems-images/problems-bee.svg";
+import beeImage from "/images/problems-images/problems-bee.svg"; // Ensure this path is correct
 
 const BeeImage = () => {
   return (
-    <div className="fly-around-animation">
-     <img src={beeImage} alt="Bee" className="w-full h-full" />
-    </div>
+    <img
+      src={beeImage}
+      alt="Bee Head"
+      className="fixed"
+      style={{
+        top: "50%",                  
+        left: "-100px",                 
+        width: "250px",                
+        height: "250px",              
+        transform: "translateY(-50%) rotate(45deg)", 
+        zIndex: 1000,                
+      }}
+    />
   );
 };
 

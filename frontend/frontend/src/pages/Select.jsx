@@ -33,18 +33,18 @@ const Select = () => {
 
       let nextInterval;
       if (images[index] === bee && images[(index + 1) % images.length] === beehcy) {
-        nextInterval = 3000;
+        nextInterval = 2500;
       } else if (images[index] === beehcy && images[(index + 1) % images.length] === beecy) {
-        nextInterval = 50;
+        nextInterval = 60;
       } else if (images[index] === beecy && images[(index + 1) % images.length] === bee) {
-        nextInterval = 40;
+        nextInterval = 90;
       }
 
       clearInterval(interval);
       interval = setInterval(startTransition, nextInterval);
     };
 
-    interval = setInterval(startTransition, 3000);
+    interval = setInterval(startTransition, 1500);
 
     return () => clearInterval(interval);
   }, []);
