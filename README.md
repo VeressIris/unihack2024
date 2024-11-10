@@ -44,14 +44,15 @@
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/your-username/OlumpiAId.git
-    cd OlumpiAId
+    git clone https://github.com/your-username/OlympiAId.git
+    cd OlympiAId
     ```
 
 2. **Frontend Setup**:
     ```bash
     cd frontend
     npm install
+    npm install tailwindcss
     npm run dev
     ```
 
@@ -61,17 +62,11 @@
     Install dependencies and start the Express server:
     ```bash
     npm install
-    npm start
+    npm install express
+    npm install mongodb
     ```
-
-4. **Database Setup**: Start MongoDB by running:
-    ```bash
-    mongod
-    ```
-
-5. **MLflow Setup**: Follow the MLflow documentation for tracking model experiments.
-
-6. **Run the Application**: Open the app in your browser via the provided localhost URL from Vite.
+    
+4. **Run the Application**: Open the app in your browser via the provided localhost URL from Vite.
 
 ## Project Structure (folders):
 frontend/frontend/ 
