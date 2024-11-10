@@ -27,7 +27,13 @@ const View = () => {
         const data = await response.json();
         console.log(data);
         // Ensure data.solutions is an array, or default to an empty array
-        setUserSolutions(Array.isArray(data) ? data : []);
+        setUserSolutions(
+          Array.isArray(data)
+            ? data.sort(
+                (a, b) => new Date(b.dateCreated) - new Date(a.dateCreated)
+              )
+            : []
+        );
         console.log(userSolutions);
       } catch (error) {
         console.error("Error fetching solutions:", error);
@@ -68,8 +74,8 @@ const View = () => {
         const result = await response.json();
         console.log("Solution posted successfully:", result);
 
-        // Update userSolutions in state without localStorage
-        setUserSolutions((prevSolutions) => [...prevSolutions, newSolution]);
+        // Update userSolutions state
+        setUserSolutions((prevSolutions) => [newSolution, ...prevSolutions]);
         setSolution("");
       } catch (error) {
         console.error("Error occurred during fetch:", error);

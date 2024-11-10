@@ -155,7 +155,7 @@ app.get("/get-solutions", async (req, res) => {
     const db = client.db("db");
     const collection = db.collection("tests");
     const data = await collection.findOne({ _id: objId });
-    res.json(data.solutions.sort({ dateCreated: -1 }));
+    res.json(data.solutions);
   } catch (error) {
     console.error("Error retrieving data:", error);
     res.status(500).send("Error retrieving data");
