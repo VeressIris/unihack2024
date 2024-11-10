@@ -38,7 +38,7 @@ app.get("/get-tests", async (req, res) => {
   try {
     const db = client.db("db");
     const collection = db.collection("tests");
-    const data = await collection.find({}).toArray();
+    const data = await collection.find({}).sort({ dateCreated: -1 }).toArray();
     res.json(data);
   } catch (error) {
     console.error("Error retrieving data:", error);
