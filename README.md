@@ -96,23 +96,7 @@ frontend/frontend/
 - **Frontend Navigation**: Access interactive dropdown menus and a responsive interface.
 - **Model Training**: Track and experiment with Hugging Face models using MLflow.
 
-## Contributing
-Contributions to OlympiAId are welcome! To contribute:
 
-1. Fork the repository.
-2. Create a new branch:
-    ```bash
-    git checkout -b feature/YourFeature
-    ```
-3. Commit your changes:
-    ```bash
-    git commit -m "Add feature"
-    ```
-4. Push to the branch:
-    ```bash
-    git push origin feature/YourFeature
-    ```
-5. Open a Pull Request on GitHub.
 
 ## Contact
 For questions or suggestions, please contact Martinescu Iseline or Veress Iris at:
