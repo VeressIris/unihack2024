@@ -1,12 +1,15 @@
-import FormattedText from "./formattedText";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import FormattedText from "./formattedText";
 
 function ProblemPreview({ subject, index }) {
   const navigate = useNavigate();
+
   const handleProblemClick = (subject) => {
     localStorage.setItem("selectedSubject", JSON.stringify(subject));
     navigate("/view");
   };
+
   return (
     <div
       key={index}
@@ -17,8 +20,9 @@ function ProblemPreview({ subject, index }) {
         {subject.creator} a generat o problemă de {subject.subject}, clasa a{" "}
         {subject.grade}-a, faza {subject.stage}
       </h3>
-      <FormattedText text={subject.content} className />
+      <FormattedText text={subject.content} />
     </div>
   );
 }
+
 export default ProblemPreview;

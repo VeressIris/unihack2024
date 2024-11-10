@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import Nav from '../assets/components/nav';
+import React, { useEffect, useState } from "react";
+import Nav from "../assets/components/nav";
 
 const View = () => {
   const [selectedSubject, setSelectedSubject] = useState(null);
-  const [solution, setSolution] = useState('');
+  const [solution, setSolution] = useState("");
   const [userSolutions, setUserSolutions] = useState([]);
 
   useEffect(() => {
@@ -12,7 +12,6 @@ const View = () => {
       setSelectedSubject(JSON.parse(subjectData));
     }
 
-    // Load existing solutions from localStorage (if any)
     const savedSolutions = localStorage.getItem("userSolutions");
     if (savedSolutions) {
       setUserSolutions(JSON.parse(savedSolutions));
@@ -26,50 +25,56 @@ const View = () => {
         text: solution,
         timestamp: new Date().toLocaleString(),
       };
-      
-      // Save solution locally and in localStorage
+
       const updatedSolutions = [...userSolutions, newSolution];
       setUserSolutions(updatedSolutions);
       localStorage.setItem("userSolutions", JSON.stringify(updatedSolutions));
-
-      // Clear the textarea
-      setSolution('');
+      setSolution("");
     } else {
       alert("Please enter a solution before submitting.");
     }
   };
 
+  const renderWithNewLines = (text) => {
+    return text.split("\n").map((line, index) => (
+      <p key={index} style={{ whiteSpace: "pre-wrap" }} className="text-gray-700 mb-2">
+        {line}
+      </p>
+    ));
+  };
+
   if (!selectedSubject) {
-    return <div>Loading...</div>; // Display loading message until subject data is available
+    return <div>Loading...</div>;
   }
 
   return (
     <div className="view-page min-h-screen bg-gradient-to-br from-[#3ba4cb] to-[#2c3eb4] flex flex-col items-center text-white">
       <Nav />
       <div className="w-full max-w-3xl p-8 bg-white text-black rounded-lg shadow-lg mt-10">
-        <h2 className="text-2xl font-bold mb-4">{selectedSubject.title}</h2>
-        
+        <h2 className="text-2xl font-bold mb-4">{selectedSubject.subject}</h2>
+
         {/* Subject Description */}
-        <p className="text-gray-700 mb-6">{selectedSubject.description}</p>
-        
-        {/* Additional Information */}
+        <div className="mb-6">
+          {renderWithNewLines(selectedSubject.content)}
+        </div>
+
         <p className="text-lg mb-4 font-semibold text-blue-800">Detalii despre subiect:</p>
         <p className="mb-4">
-          Aici găsești informații detaliate despre acest subiect. Consultă materialele de mai jos pentru a înțelege mai bine noțiunile de bază și aplicabilitatea lor. 
+          Aici găsești informații detaliate despre acest subiect. Consultă materialele de mai jos pentru a înțelege mai bine noțiunile de bază și aplicabilitatea lor.
           Parcurge aceste detalii pentru o înțelegere aprofundată.
         </p>
-        
+
         {/* Solution Explanation */}
         <p className="text-lg mb-4 font-semibold text-blue-800">Rezolvare:</p>
         <p className="text-gray-700 mb-6">
-          În această secțiune, vei găsi soluția completă a subiectului ales, explicată pas cu pas. Aceasta include atât metode teoretice, cât și exemple practice 
+          În această secțiune, vei găsi soluția completă a subiectului ales, explicată pas cu pas. Aceasta include atât metode teoretice, cât și exemple practice
           care te vor ajuta să înțelegi subiectul și să aplici cunoștințele în situații similare.
         </p>
-        
+
         {/* Tips and Additional Resources */}
         <p className="text-lg font-semibold text-blue-800">Sfaturi și resurse suplimentare:</p>
         <p className="text-gray-700 mb-6">
-          Dacă dorești să aprofundezi acest subiect, îți recomandăm să consulți resurse adiționale, cum ar fi cărți, articole, sau cursuri online. 
+          Dacă dorești să aprofundezi acest subiect, îți recomandăm să consulți resurse adiționale, cum ar fi cărți, articole, sau cursuri online.
           De asemenea, este util să exersezi pe probleme similare pentru a-ți consolida cunoștințele.
         </p>
 
