@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../assets/components/nav";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const View = () => {
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [solution, setSolution] = useState("");
   const [userSolutions, setUserSolutions] = useState([]);
+  const { user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
     const subjectData = localStorage.getItem("selectedSubject");
@@ -12,24 +14,51 @@ const View = () => {
       setSelectedSubject(JSON.parse(subjectData));
     }
 
+    // fetch solutions
     const savedSolutions = localStorage.getItem("userSolutions");
     if (savedSolutions) {
       setUserSolutions(JSON.parse(savedSolutions));
     }
   }, []);
 
-  const handleSolutionSubmit = (e) => {
+  const handleSolutionSubmit = async (e) => {
     e.preventDefault();
     if (solution.trim()) {
       const newSolution = {
-        text: solution,
-        timestamp: new Date().toLocaleString(),
+        creator: user.nickname,
+        content: solution,
+        dateCreated: new Date().toLocaleString(),
+        testId: selectedSubject._id
       };
+      console.log(newSolution);
+      try {
+        console.log("Posting solution to backend...");
+        const response = await fetch(
+          "https://unihack2024-13sm.onrender.com/post-solution",
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newSolution),
+          }
+        );
 
-      const updatedSolutions = [...userSolutions, newSolution];
-      setUserSolutions(updatedSolutions);
-      localStorage.setItem("userSolutions", JSON.stringify(updatedSolutions));
-      setSolution("");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const result = await response.json();
+        console.log("Solution posted successfully:", result);
+
+        // Update local state and localStorage
+        const updatedSolutions = [...userSolutions, newSolution];
+        setUserSolutions(updatedSolutions);
+        localStorage.setItem("userSolutions", JSON.stringify(updatedSolutions));
+        setSolution("");
+      } catch (error) {
+        console.error("Error occurred during fetch:", error);
+      }
     } else {
       alert("Please enter a solution before submitting.");
     }
@@ -37,7 +66,11 @@ const View = () => {
 
   const renderWithNewLines = (text) => {
     return text.split("\n").map((line, index) => (
-      <p key={index} style={{ whiteSpace: "pre-wrap" }} className="text-gray-700 mb-2">
+      <p
+        key={index}
+        style={{ whiteSpace: "pre-wrap" }}
+        className="text-gray-700 mb-2"
+      >
         {line}
       </p>
     ));
@@ -58,30 +91,45 @@ const View = () => {
           {renderWithNewLines(selectedSubject.content)}
         </div>
 
-        <p className="text-lg mb-4 font-semibold text-blue-800">Detalii despre subiect:</p>
+        <p className="text-lg mb-4 font-semibold text-blue-800">
+          Detalii despre subiect:
+        </p>
         <p className="mb-4">
-          Aici găsești informații detaliate despre acest subiect. Consultă materialele de mai jos pentru a înțelege mai bine noțiunile de bază și aplicabilitatea lor.
-          Parcurge aceste detalii pentru o înțelegere aprofundată.
+          Aici găsești informații detaliate despre acest subiect. Consultă
+          materialele de mai jos pentru a înțelege mai bine noțiunile de bază și
+          aplicabilitatea lor. Parcurge aceste detalii pentru o înțelegere
+          aprofundată.
         </p>
 
         {/* Solution Explanation */}
         <p className="text-lg mb-4 font-semibold text-blue-800">Rezolvare:</p>
         <p className="text-gray-700 mb-6">
-          În această secțiune, vei găsi soluția completă a subiectului ales, explicată pas cu pas. Aceasta include atât metode teoretice, cât și exemple practice
-          care te vor ajuta să înțelegi subiectul și să aplici cunoștințele în situații similare.
+          În această secțiune, vei găsi soluția completă a subiectului ales,
+          explicată pas cu pas. Aceasta include atât metode teoretice, cât și
+          exemple practice care te vor ajuta să înțelegi subiectul și să aplici
+          cunoștințele în situații similare.
         </p>
 
         {/* Tips and Additional Resources */}
-        <p className="text-lg font-semibold text-blue-800">Sfaturi și resurse suplimentare:</p>
+        <p className="text-lg font-semibold text-blue-800">
+          Sfaturi și resurse suplimentare:
+        </p>
         <p className="text-gray-700 mb-6">
-          Dacă dorești să aprofundezi acest subiect, îți recomandăm să consulți resurse adiționale, cum ar fi cărți, articole, sau cursuri online.
-          De asemenea, este util să exersezi pe probleme similare pentru a-ți consolida cunoștințele.
+          Dacă dorești să aprofundezi acest subiect, îți recomandăm să consulți
+          resurse adiționale, cum ar fi cărți, articole, sau cursuri online. De
+          asemenea, este util să exersezi pe probleme similare pentru a-ți
+          consolida cunoștințele.
         </p>
 
         {/* User Solution Submission Section */}
         <div className="mt-8">
-          <h3 className="text-lg font-semibold text-blue-800 mb-4">Trimite propria rezolvare:</h3>
-          <form onSubmit={handleSolutionSubmit} className="flex flex-col space-y-4">
+          <h3 className="text-lg font-semibold text-blue-800 mb-4">
+            Trimite propria rezolvare:
+          </h3>
+          <form
+            onSubmit={handleSolutionSubmit}
+            className="flex flex-col space-y-4"
+          >
             <textarea
               value={solution}
               onChange={(e) => setSolution(e.target.value)}
@@ -100,13 +148,20 @@ const View = () => {
 
         {/* Display User-Submitted Solutions */}
         <div className="mt-10">
-          <h3 className="text-lg font-semibold text-blue-800 mb-4">Rezolvări trimise de utilizatori:</h3>
+          <h3 className="text-lg font-semibold text-blue-800 mb-4">
+            Rezolvări trimise de utilizatori:
+          </h3>
           {userSolutions.length > 0 ? (
             <ul className="space-y-4">
               {userSolutions.map((sol, index) => (
-                <li key={index} className="p-4 border border-gray-300 rounded-lg bg-gray-100">
-                  <p className="text-gray-800">{sol.text}</p>
-                  <p className="text-gray-500 text-sm mt-2">Trimis la: {sol.timestamp}</p>
+                <li
+                  key={index}
+                  className="p-4 border border-gray-300 rounded-lg bg-gray-100"
+                >
+                  <p className="text-gray-800">{sol.content}</p>
+                  <p className="text-gray-500 text-sm mt-2">
+                    Trimis la: {sol.timestamp}
+                  </p>
                 </li>
               ))}
             </ul>
