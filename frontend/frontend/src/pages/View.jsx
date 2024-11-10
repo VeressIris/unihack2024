@@ -53,32 +53,28 @@ const View = () => {
       <div className="w-full max-w-3xl p-8 bg-white text-black rounded-lg shadow-lg mt-10">
         <h2 className="text-2xl font-bold mb-4">{selectedSubject.subject}</h2>
 
-        {/* Subject Description */}
         <div className="mb-6">
           {renderWithNewLines(selectedSubject.content)}
         </div>
 
         <p className="text-lg mb-4 font-semibold text-blue-800">Detalii despre subiect:</p>
         <p className="mb-4">
-          Aici găsești informații detaliate despre acest subiect. Consultă materialele de mai jos pentru a înțelege mai bine noțiunile de bază și aplicabilitatea lor.
-          Parcurge aceste detalii pentru o înțelegere aprofundată.
+          Vor veni cat de curând.
         </p>
 
-        {/* Solution Explanation */}
+
         <p className="text-lg mb-4 font-semibold text-blue-800">Rezolvare:</p>
         <p className="text-gray-700 mb-6">
-          În această secțiune, vei găsi soluția completă a subiectului ales, explicată pas cu pas. Aceasta include atât metode teoretice, cât și exemple practice
-          care te vor ajuta să înțelegi subiectul și să aplici cunoștințele în situații similare.
+          Va veni cat de curând.
         </p>
 
-        {/* Tips and Additional Resources */}
+
         <p className="text-lg font-semibold text-blue-800">Sfaturi și resurse suplimentare:</p>
         <p className="text-gray-700 mb-6">
-          Dacă dorești să aprofundezi acest subiect, îți recomandăm să consulți resurse adiționale, cum ar fi cărți, articole, sau cursuri online.
-          De asemenea, este util să exersezi pe probleme similare pentru a-ți consolida cunoștințele.
+         Vor veni cât de curând.
         </p>
 
-        {/* User Solution Submission Section */}
+
         <div className="mt-8">
           <h3 className="text-lg font-semibold text-blue-800 mb-4">Trimite propria rezolvare:</h3>
           <form onSubmit={handleSolutionSubmit} className="flex flex-col space-y-4">
@@ -98,7 +94,7 @@ const View = () => {
           </form>
         </div>
 
-        {/* Display User-Submitted Solutions */}
+
         <div className="mt-10">
           <h3 className="text-lg font-semibold text-blue-800 mb-4">Rezolvări trimise de utilizatori:</h3>
           {userSolutions.length > 0 ? (
