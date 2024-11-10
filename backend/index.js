@@ -85,7 +85,7 @@ app.get("/get-user", async (req, res) => {
   }
 });
 
-app.post("add-test", async (req, res) => {
+app.post("/add-test", async (req, res) => {
   test = req.body;
   try {
     const db = client.db("db");

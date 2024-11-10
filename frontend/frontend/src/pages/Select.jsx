@@ -98,11 +98,43 @@ const Select = () => {
           throw new Error("Network response was not ok");
         }
 
-        const data = await response.toArray();
+        const data = await response.json();
         console.log(data);
-        content = data[Math.floor(Math.random() * data.length)].content;
+        // content = data[Math.floor(Math.random() * data.length)].content;
       } catch (error) {
         console.error("Fetch error: ", error);
+      }
+
+      const data = {
+        creator: userData._id,
+        subject: selectedDomain,
+        grade: selectedClass,
+        stage: selectedPhase,
+        content: content,
+        solutions: [],
+      };
+      try {
+        const response = await fetch(
+          "https://unihack2024-13sm.onrender.com/add-test",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const result = await response.json();
+        navigate("/loading"); // Call navigate after successful fetch
+        return result;
+      } catch (error) {
+        console.error("Error occurred during fetch:", error);
+        // Handle error appropriately, such as displaying an error message
       }
     } else {
       alert("Selectează toate datele problemelor, înainte de a continua!");
