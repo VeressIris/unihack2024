@@ -1,6 +1,6 @@
-# OlumpiAId
+# OlympiAId
 
-**OlumpiAId** is an AI-powered platform designed to assist students in preparing for academic olympiads. It enables users to select their academic level, subject, and competition phase (local, national, county) to receive personalized topic recommendations and solutions. Users can also contribute by adding their own solutions.
+**OlympiAId** is an AI-powered platform designed to assist students in preparing for academic olympiads. It enables users to select their academic level, subject, and competition phase (local, national, county) to receive personalized topic recommendations and solutions. Users can also contribute by adding their own solutions.
 
 ## Table of Contents
 - [Features](#features)
@@ -76,6 +76,7 @@ Run the Application: Open the app in your browser via the provided localhost URL
 
 Project Structure (folders):
 
+frontend/frontend
 /public
   └── images
 /src
