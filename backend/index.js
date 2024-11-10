@@ -119,6 +119,33 @@ app.get("/get-hardcoded-test", async (req, res) => {
   }
 });
 
+app.patch("/post-solution", async (req, res) => {
+  const content = req.body.content;
+  const creator = req.body.creator;
+  const testId = req.body.testId;
+
+  const solution = {
+    content: content,
+    creator: creator,
+    dateCreated: new Date(),
+  };
+
+  const objId = ObjectId(testId);
+  try {
+    const db = client.db("db");
+    const collection = db.collection("tests");
+    const data = await collection.updateOne(
+      { _id: objId },
+      { $push: { solutions: solution } }
+    );
+
+    res.json(data);
+  } catch (error) {
+    console.error("Error posting solution:", error);
+    res.status(500).send("Error posting data");
+  }
+});
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
