@@ -2,12 +2,11 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const cors = require("cors");
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 require("dotenv").config({
   path: "C:/Users/Iris/Documents/Unihack2024/backend/.env",
 });
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.PASSWORD}@cluster0.sufae.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
-
 app.use(cors());
 app.use(express.json());
 
@@ -120,9 +119,7 @@ app.get("/get-hardcoded-test", async (req, res) => {
 });
 
 app.patch("/post-solution", async (req, res) => {
-  const content = req.body.content;
-  const creator = req.body.creator;
-  const testId = req.body.testId;
+  const { content, creator, testId } = req.body;
 
   const solution = {
     content: content,
@@ -130,16 +127,21 @@ app.patch("/post-solution", async (req, res) => {
     dateCreated: new Date(),
   };
 
-  const objId = ObjectId(testId);
   try {
+    const objId = new ObjectId(testId);
     const db = client.db("db");
     const collection = db.collection("tests");
-    const data = await collection.updateOne(
+
+    const result = await collection.updateOne(
       { _id: objId },
       { $push: { solutions: solution } }
     );
 
-    res.json(data);
+    if (result.modifiedCount === 1) {
+      res.json({ success: true, message: "Solution added successfully" });
+    } else {
+      res.status(404).json({ success: false, message: "Test not found" });
+    }
   } catch (error) {
     console.error("Error posting solution:", error);
     res.status(500).send("Error posting data");
