@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav from "../assets/components/nav";
 import { useAuth0 } from "@auth0/auth0-react";
-import ProfileHeader from "../assets/components/profile/ProfileHeader";
 import ProfileDetails from "../assets/components/profile/ProfileDetails";
 import UserProblems from "../assets/components/profile/UserProblems";
+import profil from "/images/profile-images/profile-image.svg";
+import wave from "/images/profile-images/profile-wave.svg";
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
@@ -12,16 +13,32 @@ const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [userProblems, setUserProblems] = useState([]);
   const [profileData, setProfileData] = useState({
-    name: user?.name || "",
-    nickname: user?.nickname || "",
-    email: user?.email || "",
-    emailVerified: user?.email_verified || false,
+    picture:profil,
+    name: "",
+    nickname: "",
+    email: "",
+    emailVerified: false,
     school: "",
     grade: "",
   });
 
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      console.log("Profile picture URL:", user.picture); // Verifică URL-ul imaginii în consolă
+
+      setProfileData({
+        picture:user.picture,
+        name: user.name || "",
+        nickname: user.nickname || "",
+        email: user.email || "",
+        emailVerified: user.email_verified || false,
+        school: "",
+        grade: "",
+      });
+    }
+  }, [user, isAuthenticated]);
+
   const handleSave = () => {
-   
     setIsEditing(false);
   };
 
@@ -39,7 +56,33 @@ const Profile = () => {
       <Nav />
       <div className="flex justify-center">
         <div className="bg-[#B5D4F4] min-h-[50vh] w-[40vw] p-8 rounded-lg shadow-md text-black mt-0 mb-8 relative">
-          <ProfileHeader user={user} isAuthenticated={isAuthenticated} />
+          <div className="relative flex justify-center items-center mt-4">
+            <img
+              src={wave}
+              alt="Wave"
+              className="absolute h-[140px] w-auto transform -translate-y-2 flip-animation"
+            />
+            {isAuthenticated ? (
+              <img
+              src={user.picture || profil}
+              alt={ "Profile Image"}
+              className="h-[90px] w-[90px] rounded-full mb-0 z-10 flip-animation"
+              style={{ objectFit: "cover" }}
+              onError={(e) => {
+                e.target.onerror = null; 
+                e.target.src = profil; 
+              }}
+            />
+            
+            
+            ) : (
+              <img
+                src={profil}
+                alt="Profil"
+                className="h-[120px] rounded-full mb-0 z-10 flip-animation"
+              />
+            )}
+          </div>
           {isAuthenticated ? (
             <div className="flex flex-col items-center">
               <h1 className="text-center text-2xl font-bold mt-8 mb-6">

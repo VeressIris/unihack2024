@@ -24,7 +24,6 @@ const Dropdown = ({ options, label, onSelect }) => {
       {isOpen && (
         <div 
           className="absolute z-10 mt-2 w-full rounded-md bg-lbnsw shadow-lg transition-transform duration-300 ease-out hover:scale-105" 
-          // Added transition and hover scale effect to enlarge the dropdown on hover
         >
           <ul className="py-1">
             {options.map((option, index) => (
