@@ -148,6 +148,20 @@ app.patch("/post-solution", async (req, res) => {
   }
 });
 
+app.get("/get-solutions", async (req, res) => {
+  testId = req.query.testId;
+  try {
+    const objId = new ObjectId(testId);
+    const db = client.db("db");
+    const collection = db.collection("tests");
+    const data = await collection.findOne({ _id: objId });
+    res.json(data.solutions);
+  } catch (error) {
+    console.error("Error retrieving data:", error);
+    res.status(500).send("Error retrieving data");
+  }
+});
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
