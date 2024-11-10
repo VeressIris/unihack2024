@@ -65,23 +65,6 @@ const Select = () => {
   const handleStartProblemeClick = async () => {
     if (allOptionsSelected) {
       // nu ar merge chiar asa daca chiar aveam un AI care genera subiectele
-      let userData = null;
-      try {
-        const response = await fetch(
-          `https://unihack2024-13sm.onrender.com/get-user?${new URLSearchParams(
-            { user: user.nickname }
-          )}`
-        );
-
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        userData = await response.json();
-      } catch (error) {
-        console.error("Fetch error: ", error);
-      }
-
       let content = "";
       try {
         const response = await fetch(
@@ -100,18 +83,19 @@ const Select = () => {
 
         const data = await response.json();
         console.log(data);
-        // content = data[Math.floor(Math.random() * data.length)].content;
+        content = data[Math.floor(Math.random() * data.length)].content;
       } catch (error) {
         console.error("Fetch error: ", error);
       }
 
       const data = {
-        creator: userData._id,
+        creator: user.nickname,
         subject: selectedDomain,
         grade: selectedClass,
         stage: selectedPhase,
         content: content,
         solutions: [],
+        dateCreated: new Date(),
       };
       try {
         const response = await fetch(
@@ -134,7 +118,6 @@ const Select = () => {
         return result;
       } catch (error) {
         console.error("Error occurred during fetch:", error);
-        // Handle error appropriately, such as displaying an error message
       }
     } else {
       alert("Selectează toate datele problemelor, înainte de a continua!");
