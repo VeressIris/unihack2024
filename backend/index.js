@@ -85,6 +85,40 @@ app.get("/get-user", async (req, res) => {
   }
 });
 
+app.post("add-test", async (req, res) => {
+  test = req.body;
+  try {
+    const db = client.db("db");
+    const collection = db.collection("tests");
+    const data = await collection.insertOne(test);
+    res.json(data);
+  } catch (error) {
+    console.error("Error posting test:", error);
+    res.status(500).send("Error posting data");
+  }
+});
+
+app.get("/get-hardcoded-test", async (req, res) => {
+  subject = req.query.subject;
+  grade = req.query.grade;
+  stage = req.query.stage;
+  try {
+    const db = client.db("db");
+    const collection = db.collection("hardcoded_tests");
+    const data = await collection
+      .find({
+        subject: subject,
+        grade: Number(grade),
+        stage: stage,
+      })
+      .toArray();
+    res.json(data);
+  } catch (error) {
+    console.error("Error retrieving data:", error);
+    res.status(500).send("Error retrieving data");
+  }
+});
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
