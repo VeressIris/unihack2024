@@ -5,7 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 const View = () => {
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [solution, setSolution] = useState("");
-  const [userSolutions, setUserSolutions] = useState([]);
+  const [userSolutions, setUserSolutions] = useState([]); // Ensure this is an array by default
   const { user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
@@ -14,10 +14,27 @@ const View = () => {
       setSelectedSubject(JSON.parse(subjectData));
     }
 
-    // fetch solutions
-    const savedSolutions = localStorage.getItem("userSolutions");
-    if (savedSolutions) {
-      setUserSolutions(JSON.parse(savedSolutions));
+    // Fetch solutions from backend
+    const fetchSolutions = async () => {
+      try {
+        const response = await fetch(
+          "https://unihack2024-13sm.onrender.com/get-solutions?" +
+            new URLSearchParams({ testId: JSON.parse(subjectData)?._id })
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch solutions");
+        }
+        const data = await response.json();
+        console.log(data);
+        // Ensure data.solutions is an array, or default to an empty array
+        setUserSolutions(Array.isArray(data) ? data : []);
+        console.log(userSolutions);
+      } catch (error) {
+        console.error("Error fetching solutions:", error);
+      }
+    };
+    if (subjectData) {
+      fetchSolutions();
     }
   }, []);
 
@@ -28,7 +45,7 @@ const View = () => {
         creator: user.nickname,
         content: solution,
         dateCreated: new Date().toLocaleString(),
-        testId: selectedSubject._id
+        testId: selectedSubject._id,
       };
       console.log(newSolution);
       try {
@@ -51,10 +68,8 @@ const View = () => {
         const result = await response.json();
         console.log("Solution posted successfully:", result);
 
-        // Update local state and localStorage
-        const updatedSolutions = [...userSolutions, newSolution];
-        setUserSolutions(updatedSolutions);
-        localStorage.setItem("userSolutions", JSON.stringify(updatedSolutions));
+        // Update userSolutions in state without localStorage
+        setUserSolutions((prevSolutions) => [...prevSolutions, newSolution]);
         setSolution("");
       } catch (error) {
         console.error("Error occurred during fetch:", error);
@@ -65,7 +80,7 @@ const View = () => {
   };
 
   const renderWithNewLines = (text) => {
-    return text.split("\\n").map((line, index) => (
+    return text.split("\n").map((line, index) => (
       <p
         key={index}
         style={{ whiteSpace: "pre-wrap" }}
@@ -90,13 +105,17 @@ const View = () => {
           {renderWithNewLines(selectedSubject.content)}
         </div>
 
-        <p className="text-lg mb-4 font-semibold text-blue-800">Detalii despre subiect:</p>
+        <p className="text-lg mb-4 font-semibold text-blue-800">
+          Detalii despre subiect:
+        </p>
         <p className="mb-4">Vor veni cat de curând.</p>
 
         <p className="text-lg mb-4 font-semibold text-blue-800">Rezolvare:</p>
         <p className="text-gray-700 mb-6">Va veni cat de curând.</p>
 
-        <p className="text-lg font-semibold text-blue-800">Sfaturi și resurse suplimentare:</p>
+        <p className="text-lg font-semibold text-blue-800">
+          Sfaturi și resurse suplimentare:
+        </p>
         <p className="text-gray-700 mb-6">Vor veni cât de curând.</p>
 
         <div className="mt-8">
@@ -136,7 +155,7 @@ const View = () => {
                 >
                   <p className="text-gray-800">{sol.content}</p>
                   <p className="text-gray-500 text-sm mt-2">
-                    Trimis la: {sol.timestamp}
+                    Trimis la: {sol.dateCreated}
                   </p>
                 </li>
               ))}
