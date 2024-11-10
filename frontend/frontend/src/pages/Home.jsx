@@ -1,6 +1,7 @@
-// pages/Home.jsx
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react"; 
 import Nav from "../assets/components/nav";
 import Button from "../assets/components/btn";
 import Background from "../assets/components/home/Background";
@@ -11,9 +12,15 @@ import HeroSection from "../assets/components/home/HeroSection";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   const handleStartProblemeClick = () => {
-    navigate("/select");
+    if (isAuthenticated) {
+      navigate("/select");
+    } else {
+      alert("Please log in to access this page.");
+      loginWithRedirect();
+    }
   };
 
   return (
