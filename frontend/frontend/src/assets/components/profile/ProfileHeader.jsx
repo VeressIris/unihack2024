@@ -12,10 +12,11 @@ const ProfileHeader = ({ user, isAuthenticated }) => {
       />
       {isAuthenticated ? (
         <img
-          src={user.picture}
-          alt={user.name}
-          className="h-[90px] rounded-full mb-0 z-10 flip-animation"
-        />
+        src={user.picture}
+        alt={user.name}
+        className="h-[90px] rounded-full mb-0 z-10"
+      />
+      
       ) : (
         <img
           src={profil}

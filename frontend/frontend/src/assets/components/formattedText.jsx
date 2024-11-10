@@ -1,7 +1,11 @@
 import React from 'react';
 
-const FormattedText = ({ text, maxLength = 300, splitLength = 90 }) => {
+const FormattedText = ({ text = "", maxLength = 300, splitLength = 90 }) => {
   const formatText = (text) => {
+    if (!text || typeof text !== "string") {
+      return [""]; // Returnează un array gol pentru a preveni erorile
+    }
+
     if (text.length <= splitLength) {
       return [text];
     }
@@ -14,7 +18,6 @@ const FormattedText = ({ text, maxLength = 300, splitLength = 90 }) => {
       if ((currentLine + word).length + 1 <= splitLength) {
         currentLine += (currentLine ? " " : "") + word;
       } else {
-
         if (currentLine.length < splitLength) {
           currentLine += " ".repeat(splitLength - currentLine.length);
         }
@@ -23,14 +26,12 @@ const FormattedText = ({ text, maxLength = 300, splitLength = 90 }) => {
       }
     }
 
-
     if (currentLine.length > 0) {
       if (currentLine.length < splitLength) {
         currentLine += " ".repeat(splitLength - currentLine.length);
       }
       lines.push(currentLine);
     }
-
 
     let truncatedLines = lines.join("\n").slice(0, maxLength);
     if (truncatedLines.length < lines.join("\n").length) {

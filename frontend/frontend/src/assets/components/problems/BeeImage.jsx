@@ -1,5 +1,5 @@
 import React from "react";
-import beeImage from "/images/problems-images/problems-bee.svg"; // Ensure this path is correct
+import beeImage from "/images/problems-images/problems-bee.svg"; 
 
 const BeeImage = () => {
   return (
