@@ -18,7 +18,7 @@ const Dropdown = ({ options, label, onSelect }) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         {selectedOption}
-        <span className="ml-2">&#x25bc;</span> {/* Down arrow */}
+        <span className="ml-2">&#x25bc;</span> 
       </button>
 
       {isOpen && (

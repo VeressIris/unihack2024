@@ -11,7 +11,7 @@ import LaptopImage from "../assets/components/select/LaptopImage";
 import SelectionHeader from "../assets/components/select/SelectionHeader";
 import SelectionOptions from "../assets/components/select/SelectionOptions";
 
-const domainOptions = ["Biologie", "Istorie", "Engleză"];
+const domainOptions = ["Biologie", "Istorie", "Engleză","Informatică"];
 const classOptions = ["IX", "X", "XI", "XII"];
 const phaseOptions = ["Locală", "Județeană", "Națională"];
 
