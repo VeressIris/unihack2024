@@ -21,11 +21,11 @@
 - **Frontend-Backend Communication**: MongoDB for data storage, with Express and C++ for handling data and inventory.
 
 ## Tech Stack
-- **Frontend**: React with Vite for fast development and HMR.
+- **Frontend**: React with Vite for fast development and HMR. 
 - **Styling**: Tailwind CSS for responsive and customizable components.
 - **Backend**:
   - Express for API management.
-  - C++ for high-performance operations in inventory management.
+  - JavaScript
 - **AI & Machine Learning**:
   - Hugging Face models for topic generation and solution suggestions.
   - MLflow for tracking experiments and model performance.
