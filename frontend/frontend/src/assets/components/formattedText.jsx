@@ -1,43 +1,32 @@
 import React from 'react';
 
-const FormattedText = ({ text, maxLength = 300, splitLength = 90 }) => {
+const FormattedText = ({ text = "", maxLength = 300, splitLength = 90 }) => {
   const formatText = (text) => {
-    if (text.length <= splitLength) {
-      return [text];
+    if (!text || typeof text !== "string") {
+      return [""];
     }
 
-    const words = text.split(" ");
-    let lines = [];
-    let currentLine = "";
+    const truncatedText = text.slice(0, maxLength); // Truncate to maxLength
+    const lines = truncatedText.split("\\n"); // Split by newlines
+    
+    return lines.map((line, index) => {
+      // Further split lines to respect splitLength
+      let words = line.split(" ");
+      let currentLine = "";
+      let formattedLines = [];
 
-    for (let word of words) {
-      if ((currentLine + word).length + 1 <= splitLength) {
-        currentLine += (currentLine ? " " : "") + word;
-      } else {
-
-        if (currentLine.length < splitLength) {
-          currentLine += " ".repeat(splitLength - currentLine.length);
+      for (let word of words) {
+        if ((currentLine + word).length + 1 <= splitLength) {
+          currentLine += (currentLine ? " " : "") + word;
+        } else {
+          formattedLines.push(currentLine);
+          currentLine = word;
         }
-        lines.push(currentLine);
-        currentLine = word;
       }
-    }
+      if (currentLine) formattedLines.push(currentLine); // Add remaining text
 
-
-    if (currentLine.length > 0) {
-      if (currentLine.length < splitLength) {
-        currentLine += " ".repeat(splitLength - currentLine.length);
-      }
-      lines.push(currentLine);
-    }
-
-
-    let truncatedLines = lines.join("\n").slice(0, maxLength);
-    if (truncatedLines.length < lines.join("\n").length) {
-      truncatedLines += "...";
-    }
-
-    return truncatedLines.split("\n");
+      return formattedLines.join("\n");
+    }).flat(); // Flatten the array to a single list of lines
   };
 
   const formattedLines = formatText(text);
