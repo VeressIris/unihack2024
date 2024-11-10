@@ -76,7 +76,7 @@ Run the Application: Open the app in your browser via the provided localhost URL
 
 Project Structure (folders):
 
-frontend/frontend
+
 /public
   └── images
 /src
