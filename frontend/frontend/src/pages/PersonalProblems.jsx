@@ -13,7 +13,7 @@ const PersonalProblems = () => {
       try {
         const response = await fetch(
           "https://unihack2024-13sm.onrender.com/get-user-tests?" +
-            new URLSearchParams({ username: user.nickname })
+            new URLSearchParams({ user: user.nickname })
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
