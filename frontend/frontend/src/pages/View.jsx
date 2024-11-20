@@ -5,7 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 const View = () => {
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [solution, setSolution] = useState("");
-  const [userSolutions, setUserSolutions] = useState([]); // Ensure this is an array by default
+  const [userSolutions, setUserSolutions] = useState([]);
   const { user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
@@ -14,7 +14,6 @@ const View = () => {
       setSelectedSubject(JSON.parse(subjectData));
     }
 
-    // Fetch solutions from backend
     const fetchSolutions = async () => {
       try {
         const response = await fetch(
@@ -86,14 +85,12 @@ const View = () => {
   };
 
   const renderWithNewLines = (text) => {
-    return text.split("\n").map((line, index) => (
-      <p
-        key={index}
-        style={{ whiteSpace: "pre-wrap" }}
-        className="text-gray-700 mb-2"
-      >
-        {line}
-      </p>
+    
+    return text.split("\\n").map((part, index) => (
+      <React.Fragment key={index}>
+        {part}
+        {index < text.split("\\n").length - 1 && <br />}
+      </React.Fragment>
     ));
   };
 
@@ -104,7 +101,7 @@ const View = () => {
   return (
     <div className="view-page min-h-screen bg-gradient-to-br from-[#3ba4cb] to-[#2c3eb4] flex flex-col items-center text-white">
       <Nav />
-      <div className="w-full max-w-3xl p-8 bg-white text-black rounded-lg shadow-lg mt-10">
+      <div className="w-full max-w-3xl p-8 bg-lbnsw text-black rounded-lg shadow-lg mt-10">
         <h2 className="text-2xl font-bold mb-4">{selectedSubject.subject}</h2>
 
         <div className="mb-6">

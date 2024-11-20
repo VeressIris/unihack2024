@@ -103,6 +103,8 @@ const Select = () => {
         dateCreated: new Date(),
       };
 
+      localStorage.setItem("selectedTest", JSON.stringify(data));
+
       try {
         const response = await fetch(
           "https://unihack2024-13sm.onrender.com/add-test",

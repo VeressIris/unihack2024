@@ -1,39 +1,46 @@
-
-
-import React, { useState, useEffect } from 'react';
-import Nav from '../assets/components/nav';
+import React, { useEffect, useState } from "react";
+import Nav from "../assets/components/nav";
 
 const Subject = () => {
-  const [generatedSubject, setGeneratedSubject] = useState('');
+  const [test, setTest] = useState(null);
 
   useEffect(() => {
-    // Simulate AI generating the subject
-    const subject = 'Subiect generat de AI despre biologie și anatomia umană...';
-    setGeneratedSubject(subject);
+    const savedTest = localStorage.getItem("selectedTest");
+    if (savedTest) {
+      setTest(JSON.parse(savedTest));
+    }
   }, []);
 
+  if (!test) {
+    return <div>Loading...</div>;
+  }
+
+
+  const formatContent= (text) => {
+    
+  return text.split("\\n").map((part, index) => (
+    <React.Fragment key={index}>
+      {part}
+      {index < text.split("\\n").length - 1 && <br />}
+    </React.Fragment>
+  ));
+};
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#419BD0] to-[#4556C5] text-white">
+    <div className="subject-page min-h-screen bg-gradient-to-br from-[#3ba4cb] to-[#2c3eb4] flex flex-col items-center text-white">
       <Nav />
-      <div className="flex flex-col items-center justify-center h-full space-y-6 px-6">
-        <h2 className="text-nsw text-2xl font-medium mb-4">
-          Subiectul tău este gata!
-        </h2>
-
-        {/* Display generated subject in a styled container */}
-        <div className="bg-dbnsw text-black p-4 rounded-md shadow-md w-full max-w-lg text-left">
-          <p className="whitespace-pre-wrap">{generatedSubject || 'Se generează subiectul...'}</p>
-        </div>
-
-        {/* Optional textarea if you want the subject to be editable */}
-        {/* 
-        <textarea
-          className="bg-white text-black p-4 rounded-md shadow-md w-full max-w-lg"
-          rows="10"
-          value={generatedSubject}
-          readOnly
-        />
-        */}
+      <div className="w-full max-w-3xl p-8 bg-lbnsw text-black rounded-lg shadow-lg mt-10">
+        <h2 className="text-2xl font-bold mb-4">{test.subject}</h2>
+        <div className="mb-4">{formatContent(test.content)}</div>
+        <p className="text-lg text-blue-800 font-semibold mb-2">
+          Clasa: {test.grade}
+        </p>
+        <p className="text-lg text-blue-800 font-semibold mb-2">
+          Fază: {test.stage}
+        </p>
+        <p className="text-sm text-gray-600">
+          Creat de: {test.creator} la {new Date(test.dateCreated).toLocaleString()}
+        </p>
       </div>
     </div>
   );
