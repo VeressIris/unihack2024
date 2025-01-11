@@ -1,5 +1,5 @@
 
-import React from "react";
+
 import laptop from "/images/select-images/laptop-bee/laptop.png";
 
 const LaptopImage = () => {

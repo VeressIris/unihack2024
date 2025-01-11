@@ -1,4 +1,4 @@
-import React from "react";
+
 import profil from "/images/profile-images/profile-image.svg";
 import wave from "/images/profile-images/profile-wave.svg";
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const Dropdown = ({ options, label, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);

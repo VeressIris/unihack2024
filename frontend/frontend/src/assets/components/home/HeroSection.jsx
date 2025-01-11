@@ -1,4 +1,4 @@
-import React from "react";
+
 import girl from "/images/home-images/home-girl.svg";
 import bee from "/images/home-images/home-bee.png";
 

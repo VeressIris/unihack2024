@@ -1,6 +1,4 @@
 
-import React from "react";
-
 const BeeAnimation = ({ currentBeeImage }) => {
   return (
     <div className="absolute bottom-10 left-10 z-20">

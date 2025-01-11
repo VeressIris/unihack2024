@@ -1,4 +1,3 @@
-import React from 'react';
 
 const FormattedText = ({ text = "", maxLength = 300, splitLength = 90 }) => {
   const formatText = (text) => {
@@ -6,11 +5,11 @@ const FormattedText = ({ text = "", maxLength = 300, splitLength = 90 }) => {
       return [""];
     }
 
-    const truncatedText = text.slice(0, maxLength); // Truncate to maxLength
-    const lines = truncatedText.split("\\n"); // Split by newlines
+    const truncatedText = text.slice(0, maxLength); 
+    const lines = truncatedText.split("\\n"); 
     
     return lines.map((line, index) => {
-      // Further split lines to respect splitLength
+
       let words = line.split(" ");
       let currentLine = "";
       let formattedLines = [];
@@ -23,10 +22,10 @@ const FormattedText = ({ text = "", maxLength = 300, splitLength = 90 }) => {
           currentLine = word;
         }
       }
-      if (currentLine) formattedLines.push(currentLine); // Add remaining text
+      if (currentLine) formattedLines.push(currentLine); 
 
       return formattedLines.join("\n");
-    }).flat(); // Flatten the array to a single list of lines
+    }).flat();
   };
 
   const formattedLines = formatText(text);

@@ -1,4 +1,3 @@
-import React from 'react';
 
 const CircleButton = ({ text,onClick, rounded = true }) => {
   return (

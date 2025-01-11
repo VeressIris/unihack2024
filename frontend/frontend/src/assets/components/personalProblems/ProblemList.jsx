@@ -1,4 +1,4 @@
-import React from "react";
+
 import ProblemPreview from "../../../assets/components/problemPreview";
 
 const ProblemList = ({ subjects }) => {

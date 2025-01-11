@@ -1,4 +1,4 @@
-import React from "react";
+
 import beeImage from "/images/problems-images/problems-bee.svg"; 
 
 const BeeImage = () => {

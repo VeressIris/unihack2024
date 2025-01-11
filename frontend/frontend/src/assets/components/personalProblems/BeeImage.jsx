@@ -1,4 +1,4 @@
-import React from "react";
+
 import beeImage from "/images/personal-problems-images/personal-problems-bee.png"; // Ensure this path is correct
 
 const BeeImage = () => {

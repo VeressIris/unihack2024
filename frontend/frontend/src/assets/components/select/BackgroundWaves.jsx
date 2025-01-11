@@ -1,4 +1,4 @@
-import React from "react";
+
 import wavefro from "/images/select-images/wave-select-1.svg";
 import wavebeh from "/images/select-images/wave-select-2.svg";
 
