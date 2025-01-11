@@ -8,7 +8,7 @@ const FormattedText = ({ text = "", maxLength = 300, splitLength = 90 }) => {
     const truncatedText = text.slice(0, maxLength); 
     const lines = truncatedText.split("\\n"); 
     
-    return lines.map((line, index) => {
+    return lines.map((line) => {
 
       let words = line.split(" ");
       let currentLine = "";
