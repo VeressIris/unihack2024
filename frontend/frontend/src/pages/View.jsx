@@ -41,7 +41,7 @@ const View = () => {
     if (subjectData) {
       fetchSolutions();
     }
-  }, []);
+  }, [userSolutions]);
 
   const handleSolutionSubmit = async (e) => {
     e.preventDefault();
