@@ -6,7 +6,7 @@ const View = () => {
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [solution, setSolution] = useState("");
   const [userSolutions, setUserSolutions] = useState([]);
-  const { user, isAuthenticated } = useAuth0();
+  const { user } = useAuth0();
 
   useEffect(() => {
     const subjectData = localStorage.getItem("selectedSubject");
@@ -25,7 +25,7 @@ const View = () => {
         }
         const data = await response.json();
         console.log(data);
-        // Ensure data.solutions is an array, or default to an empty array
+
         setUserSolutions(
           Array.isArray(data)
             ? data.sort(
@@ -73,7 +73,7 @@ const View = () => {
         const result = await response.json();
         console.log("Solution posted successfully:", result);
 
-        // Update userSolutions state
+
         setUserSolutions((prevSolutions) => [newSolution, ...prevSolutions]);
         setSolution("");
       } catch (error) {

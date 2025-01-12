@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Nav from "../assets/components/nav";
 import ProblemListHeader from "../assets/components/personalProblems/ProblemListHeader";
 import ProblemList from "../assets/components/personalProblems/ProblemList";
@@ -7,7 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const PersonalProblems = () => {
   const [subjects, setSubjects] = useState([]);
-  const { user, isAuthenticated } = useAuth0();
+  const { user } = useAuth0();
   useEffect(() => {
     const fetchSubjects = async () => {
       try {

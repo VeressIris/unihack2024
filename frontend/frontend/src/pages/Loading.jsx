@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav from "../assets/components/nav";
 import BackgroundWaves from "../assets/components/loading/BackgroundWaves";

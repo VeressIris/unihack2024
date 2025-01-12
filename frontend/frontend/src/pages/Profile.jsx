@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav from "../assets/components/nav";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -11,7 +11,7 @@ const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
-  const [userProblems, setUserProblems] = useState([]);
+  const [userProblems] = useState([]);
   const [profileData, setProfileData] = useState({
     picture:profil,
     name: "",

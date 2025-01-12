@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Nav from "../assets/components/nav";
 import ProblemListHeader from "../assets/components/problems/ProblemListHeader";
 import ProblemList from "../assets/components/problems/ProblemList";
